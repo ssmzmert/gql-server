@@ -1,0 +1,34 @@
+mutation updateCourseTopic($id: Int!, $topic: String!) {
+  updateCourseTopic(id: $id, topic: $topic) {
+    ... courseFields
+  }
+}
+
+fragment courseFields on Course {
+  title
+  author
+  description
+  topic
+  url
+}
+
+{
+  "id": 1,
+  "topic": "Node.js"
+}
+
+*******************************************************
+
+query getSingleCourse($courseID: Int!) {
+    course(id: $courseID) {
+        title
+        author
+        description
+        topic
+        url
+    }
+}
+
+{ 
+    "courseID":1
+}
