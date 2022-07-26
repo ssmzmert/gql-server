@@ -5,6 +5,7 @@ var { buildSchema } = require("graphql");
 // GraphQL schema  // ! represents required
 var schema = buildSchema(`
     type Query {
+        allCourses: [Course]
         course(id: Int!): Course
         courses(topic: String): [Course]
     },
@@ -51,6 +52,10 @@ var coursesData = [
   },
 ];
 
+var getAllCourses = () => {
+  return coursesData;
+};
+
 var getCourse = function (args) {
   var id = args.id;
   return coursesData.filter((course) => {
@@ -78,6 +83,7 @@ var updateCourseTopic = function ({ id, topic }) {
 };
 
 var root = {
+  allCourses: getAllCourses,
   course: getCourse,
   courses: getCourses,
   updateCourseTopic: updateCourseTopic,
